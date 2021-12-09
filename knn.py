@@ -11,9 +11,9 @@ def calculate_distances(train_data, test_instance, distance_metric):
     :return: An (N, ) shaped numpy array that contains distances.
     """
     def distance_calculate(A,B,func):
-        if func == "L1":
+        if func == "L2":
             return (sum((a-b)**(2) for a, b in zip(A,B)))**(0.5)
-        elif func == "L2":
+        elif func == "L1":
             return sum(abs(a-b) for a, b in zip(A,B))
     distances = []
     for i in range(len(train_data)):
