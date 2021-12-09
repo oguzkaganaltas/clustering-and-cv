@@ -47,7 +47,14 @@ def knn(train_data, train_labels, test_data, test_labels, k, distance_metric):
     :param distance_metric: A string which indicates the distance metric, it can be either 'L1' or 'L2'
     :return: A float. The calculated accuracy.
     """
-
+    pred =[]
+    for instance in test_data:
+        distances = calculate_distances(train_data,instance,distance_metric)
+        assigned_class = majority_voting(distances,train_labels,k)
+        pred.append(assigned_class)
+    difference = pred - test_labels
+    correct = len(np.where(difference == 0)[0])
+    return correct/len(test_labels)
 
 def split_train_and_validation(whole_train_data, whole_train_labels, validation_index, k_fold):
     """
