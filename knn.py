@@ -94,6 +94,8 @@ def cross_validation(whole_train_data, whole_train_labels, k_fold, k, distance_m
     :param distance_metric: A string which indicates the distance metric, it can be either 'L1' or 'L2'
     :return: A float. Average accuracy calculated.
     """
+    accuracy = []
     for index in range(k_fold):
-        train_data, train_labels, validation_data, validation_labels = split_train_and_validation(whole_train_data, whole_train_labels, index, k_fold)
-        print(train_data)
+        train_data_split, train_labels_split, validation_data_split, validation_labels_split = split_train_and_validation(whole_train_data, whole_train_labels, index, k_fold)
+        accuracy.append(knn(train_data_split,train_labels_split,validation_data_split,validation_labels_split,k,distance_metric))
+    return accuracy
