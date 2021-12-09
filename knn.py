@@ -29,9 +29,9 @@ def majority_voting(distances, labels, k):
     :param k: An integer. The number of nearest neighbor to be selected.
     :return: An integer. The label of the majority class.
     """
-    distances.sort()
-    return np.argmax(np.bincount(distances[:k]))
-
+    sorted_idxs = np.argsort(np.array(distances))
+    labels = np.array(labels)[sorted_idxs]
+    return np.argmax(np.bincount(labels[:k]))
 
 
 def knn(train_data, train_labels, test_data, test_labels, k, distance_metric):
@@ -88,5 +88,5 @@ def cross_validation(whole_train_data, whole_train_labels, k_fold, k, distance_m
     :return: A float. Average accuracy calculated.
     """
     for index in range(k_fold):
-        a,b,c,d = split_train_and_validation(whole_train_data, whole_train_labels, index, k_fold)
-        print(a)
+        train_data, train_labels, validation_data, validation_labels = split_train_and_validation(whole_train_data, whole_train_labels, index, k_fold)
+        print(train_data)
