@@ -65,6 +65,15 @@ def split_train_and_validation(whole_train_data, whole_train_labels, validation_
     validation_data.shape is (N/k_fold, D).
     validation_labels.shape is (N/k_fold, ).
     """
+    splitted_whole_train_data = np.split(whole_train_data,k_fold,axis=0)
+    validation_data = np.array(splitted_whole_train_data[validation_index])
+    train_data = np.delete(splitted_whole_train_data,validation_index,axis=0)
+
+    splitted_whole_train_labels = np.split(whole_train_labels,k_fold,axis=0)
+    validation_labels = np.array(splitted_whole_train_labels[validation_index])
+    train_labels = np.delete(splitted_whole_train_labels,validation_index,axis=0)
+
+    return train_data, train_labels, validation_data, validation_labels
 
 
 def cross_validation(whole_train_data, whole_train_labels, k_fold, k, distance_metric):
