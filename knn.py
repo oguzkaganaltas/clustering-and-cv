@@ -29,6 +29,9 @@ def majority_voting(distances, labels, k):
     :param k: An integer. The number of nearest neighbor to be selected.
     :return: An integer. The label of the majority class.
     """
+    distances.sort()
+    return np.argmax(np.bincount(distances[:k]))
+
 
 
 def knn(train_data, train_labels, test_data, test_labels, k, distance_metric):
