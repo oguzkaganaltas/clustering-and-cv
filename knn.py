@@ -80,7 +80,7 @@ def split_train_and_validation(whole_train_data, whole_train_labels, validation_
     validation_labels = np.array(splitted_whole_train_labels[validation_index])
     train_labels = np.delete(splitted_whole_train_labels,validation_index,axis=0)
 
-    return np.concatenate(train_data), train_labels, validation_data, validation_labels
+    return np.concatenate(train_data), np.concatenate(train_labels), validation_data, validation_labels
 
 
 def cross_validation(whole_train_data, whole_train_labels, k_fold, k, distance_metric):
@@ -98,4 +98,4 @@ def cross_validation(whole_train_data, whole_train_labels, k_fold, k, distance_m
     for index in range(k_fold):
         train_data_split, train_labels_split, validation_data_split, validation_labels_split = split_train_and_validation(whole_train_data, whole_train_labels, index, k_fold)
         accuracy.append(knn(train_data_split,train_labels_split,validation_data_split,validation_labels_split,k,distance_metric))
-    return accuracy
+    return np.mean(accuracy)
