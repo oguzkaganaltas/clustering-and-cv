@@ -11,7 +11,14 @@ def assign_clusters(data, cluster_centers):
     :return: An (N, ) shaped numpy array. At its index i, the index of the closest center
     resides to the ith data point.
     """
-
+    distances_matrix = np.zeros((cluster_centers.shape[0],data.shape[0]))
+    def distance(A,B):
+        return (sum((a-b)**(2) for a, b in zip(A,B)))**(0.5)
+        
+    for i in range(len(cluster_centers)):
+        for j in range(len(data)):
+            distances_matrix[i][j] = distance(data[j],cluster_centers[i])
+    return distances_matrix.argmin(axis=0)   
 
 def calculate_cluster_centers(data, assignments, cluster_centers, k):
     """
@@ -27,6 +34,12 @@ def calculate_cluster_centers(data, assignments, cluster_centers, k):
     :param k: Number of clusters
     :return: A (K, D) shaped numpy array that contains the newly calculated cluster centers.
     """
+    for i in range(k):
+        cluster = data[np.where(assignments == i)]
+        if(len(cluster)):
+            cluster_centers[i] = cluster.mean(axis=0)
+
+    return cluster_centers
 
 
 def kmeans(data, initial_cluster_centers):
@@ -41,3 +54,20 @@ def kmeans(data, initial_cluster_centers):
     objective function is a float. It is calculated by summing the squared euclidean distance between
     data points and their cluster centers.
     """
+
+    def calculate_objective(data, cluster):
+        return np.sum(np.square(data - cluster))
+
+    prev_obj_function = 0
+    current_obj_function = 0
+    cluster_centers = np.copy(initial_cluster_centers)
+
+    while(True):
+        assignment = assign_clusters(data,cluster_centers)
+        cluster_centers =  calculate_cluster_centers(data,assignment,cluster_centers,len(cluster_centers))
+        prev_obj_function = current_obj_function
+        current_obj_function = calculate_objective(data,cluster_centers[assignment])
+        if(prev_obj_function == current_obj_function):
+            return cluster_centers, current_obj_function
+    
+    
