@@ -1,5 +1,10 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
+def init_clusters(data, k, seed):
+    vector_size = data.shape[1]
+    np.random.seed(seed)
+    return np.random.uniform(data.min()*2/3,data.max()*2/3,size=(k,vector_size))
 
 def assign_clusters(data, cluster_centers):
     """
@@ -58,6 +63,15 @@ def kmeans(data, initial_cluster_centers):
     def calculate_objective(data, cluster):
         return np.sum(np.square(data - cluster))
 
+    def plot_clusters(data,label,cluster_centers_):
+        centroids = cluster_centers_
+        u_labels = np.unique(label)
+        for i in u_labels:
+            plt.scatter(data[label == i , 0] , data[label == i , 1] , label = i)
+        plt.scatter(centroids[:,0] , centroids[:,1] , s = 80, color = 'k')
+        plt.legend()
+        plt.show()
+
     prev_obj_function = 0
     current_obj_function = 0
     cluster_centers = np.copy(initial_cluster_centers)
@@ -67,7 +81,7 @@ def kmeans(data, initial_cluster_centers):
         cluster_centers =  calculate_cluster_centers(data,assignment,cluster_centers,len(cluster_centers))
         prev_obj_function = current_obj_function
         current_obj_function = calculate_objective(data,cluster_centers[assignment])
+        
         if(prev_obj_function == current_obj_function):
+            plot_clusters(data,assignment,cluster_centers)
             return cluster_centers, current_obj_function
-    
-    
