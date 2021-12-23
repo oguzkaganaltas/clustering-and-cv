@@ -43,7 +43,7 @@ resultant_cluster_centers_gt = np.asarray([
     [1.14302278, 2.17750273],
     [0.76967005, 0.95026129]
 ])
-obj_function_gt = 20.30670902775301
+obj_function_gt = 10.153354513876504
 
 # Testing Methods
 assignments = assign_clusters(data, initial_cluster_centers)
