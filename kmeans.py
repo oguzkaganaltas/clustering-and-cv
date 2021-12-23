@@ -61,7 +61,7 @@ def kmeans(data, initial_cluster_centers):
     """
 
     def calculate_objective(data, cluster):
-        return np.sum(np.square(data - cluster))
+        return 0.5*np.sum(np.square(data - cluster))
 
     def plot_clusters(data,label,cluster_centers_):
         centroids = cluster_centers_
