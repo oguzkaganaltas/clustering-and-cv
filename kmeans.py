@@ -19,7 +19,6 @@ def assign_clusters(data, cluster_centers):
     distances_matrix = np.zeros((cluster_centers.shape[0],data.shape[0]))
     def distance(A,B):
         return (sum((a-b)**(2) for a, b in zip(A,B)))**(0.5)
-        
     for i in range(len(cluster_centers)):
         for j in range(len(data)):
             distances_matrix[i][j] = distance(data[j],cluster_centers[i])
@@ -83,5 +82,5 @@ def kmeans(data, initial_cluster_centers):
         current_obj_function = calculate_objective(data,cluster_centers[assignment])
         
         if(prev_obj_function == current_obj_function):
-            plot_clusters(data,assignment,cluster_centers)
-            return cluster_centers, current_obj_function
+            #plot_clusters(data,assignment,cluster_centers)
+            return cluster_centers, current_obj_function, assignment

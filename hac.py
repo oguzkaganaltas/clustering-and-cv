@@ -8,7 +8,9 @@ def single_linkage(c1, c2):
     :param c2: An (M, D) shaped numpy array containing the data points in cluster c2.
     :return: A float. The result of the calculation.
     """
-
+    a, b= np.meshgrid(c1,c2)
+    print(a-b)
+    return np.argmin(a-b)
 
 def complete_linkage(c1, c2):
     """
