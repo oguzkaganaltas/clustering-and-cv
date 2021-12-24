@@ -83,4 +83,4 @@ def kmeans(data, initial_cluster_centers):
         
         if(prev_obj_function == current_obj_function):
             #plot_clusters(data,assignment,cluster_centers)
-            return cluster_centers, current_obj_function, assignment
+            return cluster_centers, current_obj_function
