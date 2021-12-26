@@ -51,7 +51,8 @@ def centroid_linkage(c1, c2):
     :param c2: An (M, D) shaped numpy array containing the data points in cluster c2.
     :return: A float. The result of the calculation.
     """
-    return distance(np.sum(c1)/len(c1),np.sum(c2)/len(c2))
+    return distance(np.sum(c1,axis=0)/len(c1),np.sum(c2,axis=0)/len(c2))
+
 
 def hac(data, criterion, stop_length):
     """

@@ -7,9 +7,9 @@ dataset2 = np.load("hac/dataset2.npy")
 dataset3 = np.load("hac/dataset3.npy")
 dataset4 = np.load("hac/dataset4.npy")
 
-functions = [single_linkage,complete_linkage,average_linkage,centroid_linkage]
-k_values = [2,2,2,4]
-datasets = [dataset1,dataset2,dataset3,dataset4]
+functions = [centroid_linkage] #single_linkage,complete_linkage,average_linkage,
+k_values = [2,2,2,4] #
+datasets = [dataset1,dataset2,dataset3,dataset4]#
 
 all_results=[]
 

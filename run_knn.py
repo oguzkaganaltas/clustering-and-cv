@@ -35,7 +35,7 @@ plt.ylabel("accuracy %")
 plt.title("L1 norm")
 plt.show()
 
-print(cross_validation(test_set,test_labels,10,best_k_l1-1,"L1"))# -1 is for to number to index conversion
+print(knn(train_set,train_labels,test_set,test_labels,33,"L1"))# -1 is for to number to index conversion
 
 
-print(cross_validation(test_set,test_labels,10,best_k_l2-1,"L2"))# -1 is for to number to index conversion
+print(knn(train_set,train_labels,test_set,test_labels,11,"L2"))# -1 is for to number to index conversion
