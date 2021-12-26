@@ -2,10 +2,10 @@ from hac import *
 import numpy as np
 import matplotlib.pyplot as plt
 
-dataset1 = np.load("hw2_material/hac/dataset1.npy")
-dataset2 = np.load("hw2_material/hac/dataset2.npy")
-dataset3 = np.load("hw2_material/hac/dataset3.npy")
-dataset4 = np.load("hw2_material/hac/dataset4.npy")
+dataset1 = np.load("hac/dataset1.npy")
+dataset2 = np.load("hac/dataset2.npy")
+dataset3 = np.load("hac/dataset3.npy")
+dataset4 = np.load("hac/dataset4.npy")
 
 functions = [single_linkage,complete_linkage,average_linkage,centroid_linkage]
 k_values = [2,2,2,4]
