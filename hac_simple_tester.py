@@ -75,8 +75,6 @@ centroid_linkage_dist_gt = 0.8797707689738469
 
 # Testing Methods
 single_linkage_dist = single_linkage(c1, c2)
-print(single_linkage_dist)
-print(single_linkage_dist_gt)
 print('single_linkage test:', abs(single_linkage_dist - single_linkage_dist_gt) < 10 ** -5)
 
 complete_linkage_dist = complete_linkage(c1, c2)
